@@ -1,5 +1,5 @@
 module.exports = app => {
-	const Users.app.db.models.Users;
+	const Users = app.db.models.Users;
 	
 	app.get("/users/:id", (req, res) => {
 		Users.findById(req.params.id, {
@@ -27,5 +27,5 @@ module.exports = app => {
 		});
 	});
 
-	
+
 }
