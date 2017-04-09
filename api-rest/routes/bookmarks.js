@@ -11,7 +11,7 @@ module.exports = app => {
 		})
 		.post((req, res) => {
 			Bookmarks.create(req.body)
-			.then(result = res.json(result))
+			.then(result => res.json(result))
 			.catch(error => {
 				res.status(412).json({msg: error.message});
 			});
