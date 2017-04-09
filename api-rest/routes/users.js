@@ -1,6 +1,6 @@
 module.exports = app => {
 	// Get data from Models
-	const Users = app.models.users;
+	const Users = app.db.models.users;
 	app.route("/users")
 		.all((req, res) => {
 			delete req.body.id;
