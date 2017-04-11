@@ -6,19 +6,20 @@ module.exports = app => {
 			Bookmarks.findAll({})
 			.then(result => res.json({bookmarks: bookmarks}))
 			.catch(error => {
-				res.status(412).json({msg: error.message});
+				res.status(400).json({msg: error.message});
 			});
 		})
 		.post((req, res) => {
+			console.log(req.body);
 			Bookmarks.create(req.body)
 			.then(result => res.json(result))
 			.catch(error => {
-				res.status(412).json({msg: error.message});
+				res.status(400).json({msg: error.message});
 			});
 
 		});
 	
-	app.route("/bookmarks/:id")
+	app.route("/bookmark/:id")
 		.get((req, res) => {
 			Bookmarks.findOne({where: req.params})
 			.then( result => {
@@ -29,7 +30,7 @@ module.exports = app => {
 				}
 			})
 			.catch(error => {
-				res.status(412).json({msg: error.message});
+				res.status(400).json({msg: error.message});
 			});
 
 		})
@@ -37,7 +38,7 @@ module.exports = app => {
 			Bookmarks.update(req.body, {where: req.params})
 			.then(result => res.sendStatus(204))
 			.catch(error => {
-				res.status(412).json({msg: error.message})
+				res.status(400).json({msg: error.message})
 			});
 
 		})
@@ -45,7 +46,7 @@ module.exports = app => {
 			Bookmarks.destroy({where: req.params})
 			.then(result => res.sendStatus(204))
 			.catch(error =>{
-				res.status(412).json({msg: error.message})
+				res.status(400).json({msg: error.message})
 			});
 		});
 };

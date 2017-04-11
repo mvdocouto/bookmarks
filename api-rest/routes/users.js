@@ -4,11 +4,11 @@ module.exports = app => {
 	
 	app.get("/user/:id", (req, res) => {
 		Users.findById(req.params.id, {
-			attributes: ["id", "name", "permission"]
+			attributes: ["id", "name", "email", "permission"]
 		})
 		.then(result => res.json(result))
 		.catch(error => {
-			res.status(412).json({msg: error.message})
+			res.status(400).json({msg: error.message})
 		});
 	});
 
@@ -16,7 +16,7 @@ module.exports = app => {
 		Users.destroy({where: {id: req.params.id}})
 		.then(result => res.sendStatus(204))
 		.catch(error => {
-			res.status(412).json({msg: error.message})
+			res.status(400).json({msg: error.message})
 		});
 	});
 
@@ -24,7 +24,7 @@ module.exports = app => {
 		Users.create(req.body)
 		.then(result => res.json(result))
 		.catch(error => {
-			res.status(412).json({msg: error.message})
+			res.status(400).json({msg: error.message})
 		});
 	});
 
