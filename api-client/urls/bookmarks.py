@@ -12,9 +12,14 @@ bp_bookmarks = Blueprint('bookmarks', __name__,
 def list_bookmarks():
 	return render_template('bookmarks/index.html') 
 
-@bp_bookmarks.route('/', methods=['POST'])
+@bp_bookmarks.route('/add', methods=['GET'])
+def view_bookmark_form():
+	return render_template('bookmarks/form.html') 
+
+@bp_bookmarks.route('/add', methods=['POST'])
 def insert_bookmark():
 	pass 
+
 
 @bp_bookmarks.route('/update/<int:id>', methods=['GET'])
 def update_bookmark():

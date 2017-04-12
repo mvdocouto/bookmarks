@@ -34,47 +34,21 @@
     <div class="container theme-showcase" role="main">
       
     <div class="page-header">
-        <h1>Bookmarks</h1>
+        <h1>Inserir Bookmark</h1>
     </div>
-    <p>
-      <button type="button" class="btn btn-primary">Novo Bookmark</button>
-    </p>
 
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>URL</th>
-          <th>Opções</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Google</td>
-          <td>www.google.com.br</td>
-          <td>
-            <button type="button" class="btn btn-xs btn-primary">Alterar</button>
-            <button type="button" class="btn btn-xs btn-danger">Excluir</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Google</td>
-          <td>www.google.com.br</td>
-          <td>
-            <button type="button" class="btn btn-xs btn-primary">Alterar</button>
-            <button type="button" class="btn btn-xs btn-danger">Excluir</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Google</td>
-          <td>www.google.com.br</td>
-          <td>
-            <button type="button" class="btn btn-xs btn-primary">Alterar</button>
-            <button type="button" class="btn btn-xs btn-danger">Excluir</button>
-          </td>
-        </tr>        
-      </tbody>
-</table>
+    <form>
+        <div class="form-group">
+            <label for="input_name">Nome</label>
+            <input type="text" class="form-control" id="input_name" placeholder="Nome">
+        </div>
+        <div class="form-group">
+            <label for="imput_url">URL</label>
+            <input type="text" class="form-control" id="imput_url" placeholder="URL">
+        </div>
+        <button type="submit" class="btn btn-primary">Inserir</button>
+    </form>
+
 </div>
 </body>
 </html>                                		
