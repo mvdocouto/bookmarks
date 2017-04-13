@@ -3,7 +3,9 @@ module.exports = app => {
 	const Bookmarks = app.db.models.Bookmarks;
 	app.route("/bookmarks")
 		.get((req, res) => {
-			Bookmarks.findAll({})
+			Bookmarks.findAll({
+                attributes: ["id", "name", "url"]
+            })
 			.then(result => res.json({bookmark: bookmarks}))
 			.catch(error => {
 				res.status(400).json({msg: error.message});
@@ -12,7 +14,7 @@ module.exports = app => {
 		.post((req, res) => {
 			console.log(req.body);
 			Bookmarks.create(req.body)
-			.then(result => res.json(result))
+			.then(result => res.status(400).json(result))
 			.catch(error => {
 				res.status(400).json({msg: error.message});
 			});

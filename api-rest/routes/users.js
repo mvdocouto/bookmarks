@@ -2,8 +2,9 @@ module.exports = app => {
 	
 	const Users = app.db.models.Users;
 	
-	app.route("/user/:id")
-        .all(app.auth.authenticate())
+	// app.route("/user/:id")
+ //        .all(app.auth.authenticate())
+    app.route("/user/:id")
         .get((req, res) => {
             Users.findById(req.params.id, {
                 attributes: ["id", "name", "email", "permission"]
@@ -37,11 +38,21 @@ module.exports = app => {
             });
         });
 
+    app.route("/users")
+        .get((req, res) => {
+            Users.findAll({
+                attributes: ["id", "name", "email", "permission"]
+            })
+            .then(result => res.json(result))
+            .catch(error => {
+                res.status(400).json({msg: error.message});
+            });
+        });
+
 
    	app.route("/users/all")
-        .all(app.auth.authenticate())
         .get((req, res) => {
-            Users.findById(req.user.id)
+            Users.findAll({})
             .then(user => {
                 if(user.isAdmin){
                     Users.findAll({
