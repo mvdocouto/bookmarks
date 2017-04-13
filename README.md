@@ -16,7 +16,7 @@ O sistema foi dividido em dois módulos:
 
 ### Instalação
 
-Para instalar o projeto basta clonar o repositorio acessar o diretorio api-rest e intalar as dependencias do node com o npm.
+Para instalar o projeto basta clonar o repositorio acessar o diretorio **api-rest** e intalar as dependencias do node com o npm.
 ```shell
 npm install
 npm start
