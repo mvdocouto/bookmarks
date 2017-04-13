@@ -4,7 +4,7 @@ module.exports = app => {
 	app.route("/bookmarks")
 		.get((req, res) => {
 			Bookmarks.findAll({})
-			.then(result => res.json({bookmarks: bookmarks}))
+			.then(result => res.json({bookmark: bookmarks}))
 			.catch(error => {
 				res.status(400).json({msg: error.message});
 			});

@@ -5,10 +5,10 @@ import {ExtractJwt} from "passport-jwt";
 module.exports = app => {
 	const Users = app.db.models.Users;
 	const config = app.libs.config;
-	var opts = {};
-    opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
-    opts.secretOrKey = config.jwtSecret;
-	const strategy = new Strategy(opts,
+	var options = {};
+    options.jwtFromRequest = ExtractJwt.fromAuthHeader();
+    options.secretOrKey = config.jwtSecret;
+	const strategy = new Strategy(options,
 		(payload, done) => {
 			Users.findById(payload.id)
 			.then(user => {
