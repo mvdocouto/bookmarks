@@ -1,3 +1,4 @@
 api-rest/node_modules/
 api-rest/node_modules/*
 /api-rest/bookmarks.sqlite
+*.pyc
