@@ -37,22 +37,22 @@
         <h1>Inserir User</h1>
     </div>
 
-    <form>
+    <form method="post">
         <div class="form-group">
             <label for="input_name">Nome</label>
-            <input type="text" class="form-control" id="input_name" placeholder="Nome">
+            <input type="text" class="form-control" name="nome" value="{{user.name}}" id="input_name" placeholder="Nome">
         </div>
         <div class="form-group">
             <label for="input_email">Email</label>
-            <input type="email" class="form-control" id="input_email" placeholder="Email">
+            <input type="email" class="form-control" name="email" value="{{user.email}}" id="input_email" placeholder="Email">
         </div>
         <div class="form-group">
             <label for="imput_url">Password</label>
-            <input type="password" class="form-control" id="imput_url" placeholder="Password">
+            <input type="password" class="form-control" name="password" value="{{user.password}}" id="imput_url" placeholder="Password">
         </div>
         <div class="form-group">
-            <label for="imput_url">URL</label>
-            <input type="text" class="form-control" id="imput_url" placeholder="URL">
+            <label for="imput_url">Permission</label>
+            <input type="text" class="form-control" name="permission" value="{{user.permission}}" id="imput_url" >
         </div>
         <button type="submit" class="btn btn-primary">Inserir</button>
     </form>

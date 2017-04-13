@@ -48,30 +48,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Zeca das Coves</td>
-          <td>User</td>
-          <td>
-              <a href="/update/1" class="btn btn-xs btn-primary">Alterar</a>
-              <a href= "/delete/1" class="btn btn-xs btn-danger">Excluir</a>
-          </td>
-        </tr>
-        <tr>
-          <td>Zeca das Coves</td>
-          <td>User</td>
-          <td>
-              <a href="/update/1" class="btn btn-xs btn-primary">Alterar</a>
-              <a href= "/delete/1" class="btn btn-xs btn-danger">Excluir</a>
-          </td>
-        </tr>
-        <tr>
-          <td>Paulo Ricardo</td>
-          <td>Admin</td>
-          <td>
-              <a href="/update/1" class="btn btn-xs btn-primary">Alterar</a>
-              <a href= "/delete/1" class="btn btn-xs btn-danger">Excluir</a>
-          </td>
-        </tr>        
+        {% for user in users %}
+          <tr>
+            <td>{{user.name}}</td>
+            <td>{{user.permission }}</td>
+            <td>
+                <a href="./update/{{user.id}}" class="btn btn-xs btn-primary">Alterar</a>
+                <a href= "./delete/{{user.id}}" class="btn btn-xs btn-danger">Excluir</a>
+            </td>
+          </tr>
+        {% endfor %}
       </tbody>
 </table>
 </div>

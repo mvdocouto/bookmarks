@@ -49,30 +49,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Google</td>
-          <td>www.google.com.br</td>
-          <td>
-            <button type="button" class="btn btn-xs btn-primary">Alterar</button>
-            <button type="button" class="btn btn-xs btn-danger">Excluir</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Google</td>
-          <td>www.google.com.br</td>
-          <td>
-            <button type="button" class="btn btn-xs btn-primary">Alterar</button>
-            <button type="button" class="btn btn-xs btn-danger">Excluir</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Google</td>
-          <td>www.google.com.br</td>
-          <td>
-            <button type="button" class="btn btn-xs btn-primary">Alterar</button>
-            <button type="button" class="btn btn-xs btn-danger">Excluir</button>
-          </td>
-        </tr>        
+        {% for bookmark in bookmarks %}
+          <tr>
+            <td>{{bookmark.name}}</td>
+            <td>{{bookmark.url}}</td>
+            <td>
+                <a href="./update/{{bookmark.id}}" class="btn btn-xs btn-primary">Alterar</a>
+                <a href= "./delete/{{bookmark.id}}" class="btn btn-xs btn-danger">Excluir</a>
+            </td>
+          </tr>
+        {% endfor %}
       </tbody>
 </table>
 </div>
