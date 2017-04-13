@@ -3,7 +3,7 @@
 ## Sobre o projeto
 
 Sistema de gerenciamento de bookmarks. Cada usuário pode cadastrar seus bookmarks e consulta-los de maneira facil.
-O sistema possui dois niveis de usuario
+O sistema possui dois niveis de usuarios:
 - Administrador: Visualiza os bookmarks de todos os usuários.
 - User: Somente gerencia os seus bookmarks. 
 
@@ -20,6 +20,13 @@ Para instalar o projeto basta clonar o repositorio acessar o diretorio api-rest 
 ```shell
 npm install
 npm start
+```
+
+### Configuração Inicial
+
+Inicialmento o banco de dados não possui nenhum usuário. Será necessário inserir um usuário administrador. Para inserir um usuário administrador do sistema utilize o seguinte comando:
+```
+curl --request POST --url http://localhost:5000/users/ --header 'content-type: application/json' --data '{"name": "adm","email": "adm@adm.com", "password": "adm", "permission": "true"}'
 ```
 
 ### Testes
