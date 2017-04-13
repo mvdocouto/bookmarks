@@ -25,7 +25,7 @@ npm start
 ### Configuração Inicial
 
 Inicialmento o banco de dados não possui nenhum usuário. Será necessário inserir um usuário administrador. Para inserir um usuário administrador do sistema utilize o seguinte comando:
-```
+```shell
 curl --request POST --url http://localhost:5000/users/ --header 'content-type: application/json' --data '{"name": "adm","email": "adm@adm.com", "password": "adm", "permission": "true"}'
 ```
 
