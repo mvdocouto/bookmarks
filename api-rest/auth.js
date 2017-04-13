@@ -24,8 +24,8 @@ module.exports = app => {
 		});
 	passport.use(strategy);
 	return {
-		initilize: () => {
-			return passport.initilize();
+		initialize: () => {
+			return passport.initialize();
 		},
 		authenticate: () => {
 			return passport.authenticate("jwt", config.jwtSession)

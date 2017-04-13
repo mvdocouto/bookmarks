@@ -22,7 +22,7 @@ module.exports = (sequelize, DataType) => {
 	},{
 		classMethods:{
 			associate: (models) => {
-				Bookmarks.belongsTo(models.Users);
+				Bookmarks.belongsTo(models.Users, {foreignKey: 'user_id'});
 			}
 		}
 	});

@@ -35,7 +35,7 @@ module.exports = (sequelize, DataType) => {
 	},{
 		classMethods:{
 			associate: (models) => {
-				Users.hasMany(models.Bookmarks);
+				Users.hasMany(models.Bookmarks, {foreignKey: 'user_id'});
 			}
 		}
 	});
