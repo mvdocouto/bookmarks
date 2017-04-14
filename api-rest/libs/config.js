@@ -1,14 +1,8 @@
-module.exports = {
-	database: "bookmark",
-	username: "",
-	password: "",
-	params: {
-		dialect: "sqlite",
-		storage: "bookmarks.sqlite",
-		define: {
-			undescored: true
-		}
-	},
-	jwtSecret: "b44km1rk-1P3",
-	jwtSession: {session: false}
+module.exports = app => {
+	const env = process.env.NODE_ENV;
+	if (Boolean(env)) {
+        // Importa o arquivo correto de cada ambiente (test, qa, prod, etc)
+        return require(`./config.${env}.js`);
+    }
+    return require("./config.dev.js");
 };

@@ -27,7 +27,7 @@ module.exports = app => {
 				if(user.permission){
 					Users.findAll({atributes: ["id","name","email","permission"], include: [Bookmarks]})
 					.then(result => {
-						res.json(result);
+						res.status(200).json(result);
 					});
 				}else{
 					res.sendStatus(400)
