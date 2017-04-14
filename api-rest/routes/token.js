@@ -9,22 +9,14 @@ module.exports = app => {
 			const password = req.body.password
 			Users.findOne({where: {email: email}})
 			.then(user => {
-				const payload = {id: user.id};
-				res.json({
-					token: jwt.encode(payload, config.jwtSecret)
-				});
-				// console.log(user.password);
-				// console.log(password);
-				// console.log(Users.isPasswordCorrect(user.password, password));
-				// if(Users.isPasswordCorrect(user.password, password)){
-				// 	console.log(user.id);
-				// 	const payload = {id: user.id};
-				// 	res.json({
-				// 		token: jwt.encode(payload, config.jwtSecret)
-				// 	});
-				// }else{
-				// 	res.senStatus(400).json({msg: error.message});
-				// }
+				if(Users.isPasswordCorrect(user.password, password)){
+					const payload = {id: user.id};
+					res.json({
+						token: jwt.encode(payload, config.jwtSecret)
+					});
+				}else{
+					res.senStatus(400).json({msg: error.message});
+				}
 			})
 			.catch(error => res.sendStatus(400));
 		}else{

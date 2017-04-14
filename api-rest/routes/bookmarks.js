@@ -4,29 +4,27 @@ module.exports = app => {
 	app.route("/bookmarks")
 	    .all(app.auth.authenticate())
 		.get((req, res) => {
-			console.log(app.auth.authenticate());
-			console.log(req.user);
-			Bookmarks.findAll({where: {user_id: req.user.id}, include: [Users]})
+			Bookmarks.findAll({ where: { UserId: req.user.id }})
 			.then(result => res.json(result))
 			.catch(error => {
 				res.status(400).json({msg: error.message});
 			});
 		})
 		.post((req, res) => {
-			req.body.user_id = req.user.id;
+			req.body.UserId = req.user.id;
 			Bookmarks.create(req.body)
-			.then(result => res.status(400).json(result))
+			.then(result => res.status(201).json(result))
 			.catch(error => {
 				res.status(400).json({msg: error.message});
 			});
 		});
 
-	app.route("bookmarks/all")
+	app.route("/bookmarks/all")
 		.all(app.auth.authenticate())
 		.get((req, res) => {
 			Users.findById(req.user.id)
 			.then(user => {
-				if(user.permision){
+				if(user.permission){
 					Users.findAll({atributes: ["id","name","email","permission"], include: [Bookmarks]})
 					.then(result => {
 						res.json(result);
