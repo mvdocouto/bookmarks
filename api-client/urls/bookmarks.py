@@ -50,7 +50,7 @@ def insert_form():
  
 
 @bp_bookmarks.route('/add', methods=['POST']) 
-def insert_user():
+def insert_bookmark():
 	errors = ''
 	name = request.form.get("nome").strip() 
 	url = request.form.get("url").strip() 
@@ -78,6 +78,7 @@ def insert_user():
 
 @bp_bookmarks.route('/update/<int:id>', methods=['GET'])
 def update_form(id):
+	import ipdb; ipdb.set_trace()
 	if 'user_token' not in session:
 		return redirect(url_for('auth.login'))
 	
@@ -87,11 +88,12 @@ def update_form(id):
 	}
 	result = requests.get("http://localhost:3000/bookmark/{id}".format(id=id), headers=headers)
 	context = {"bookmark": result.json()}
+	print context
 	return render_template('bookmarks/form.html', **context), 200 
  
 
 @bp_bookmarks.route('/update/<int:id>', methods=['POST'])
-def update_user(id):
+def update_bookmark(id):
 	errors = ''
 	name = request.form.get("nome").strip() 
 	url = request.form.get("url").strip() 
@@ -119,7 +121,7 @@ def update_user(id):
 
 
 @bp_bookmarks.route('/delete/<int:id>', methods=['GET'])
-def delete_user(id):
+def delete_bookmark(id):
 	if 'user_token' not in session:
 		return redirect(url_for('auth.login'))
 	

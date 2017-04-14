@@ -16,16 +16,14 @@
         </tr>
       </thead>
       <tbody>
-        {% for user in users %}
           <tr>
-            <td>{{user.name}}</td>
-            <td>{{user.permission }}</td>
+            <td>{{users.name}}</td>
+            <td>{{users.permission }}</td>
             <td>
-                <a href="./update/{{user.id}}" class="btn btn-xs btn-primary">Alterar</a>
-                <a href= "./delete/{{user.id}}" class="btn btn-xs btn-danger">Excluir</a>
+                <a href="./update/{{users.id}}" class="btn btn-xs btn-primary">Alterar</a>
+                <a href= "./delete/{{users.id}}" class="btn btn-xs btn-danger">Excluir</a>
             </td>
           </tr>
-        {% endfor %}
       </tbody>
   </table>
 {% endblock %}

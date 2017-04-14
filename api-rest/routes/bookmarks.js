@@ -5,7 +5,7 @@ module.exports = app => {
 	    .all(app.auth.authenticate())
 		.get((req, res) => {
 			Bookmarks.findAll({ where: { UserId: req.user.id }})
-			.then(result => res.json(result))
+			.then(result => res.status(200).json(result))
 			.catch(error => {
 				res.status(400).json({msg: error.message});
 			});
@@ -41,11 +41,10 @@ module.exports = app => {
 	app.route("/bookmark/:id")
 		.all(app.auth.authenticate())
 		.get((req, res) => {
-			console.log(req.params.id)
 			Bookmarks.findOne({where: {id: req.params.id, UserId: req.user.id}})
 			.then(result => {
 				if(result){
-					res.json(result);
+					res.status(200).json(result);
 				}else{
 					res.sendStatus(404);
 				}

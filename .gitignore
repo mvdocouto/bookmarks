@@ -1,4 +1,7 @@
 api-rest/node_modules/
 api-rest/node_modules/*
 /api-rest/bookmarks.sqlite
+/api-rest/bookmarks-test.sqlite
+npm-debug.log
+.nyc_output/
 *.pyc

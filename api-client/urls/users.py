@@ -14,7 +14,11 @@ def list_users():
 	if 'user_token' not in session:
 		return redirect(url_for('auth.login'))
 	
-	result = requests.get("http://localhost:3000/users")
+	headers = {
+		'Content-Type': 'application/json',
+		'Authorization': 'JWT {token}'.format(token=session.get('user_token'))
+	}
+	result = requests.get("http://localhost:3000/user", headers=headers)
 	context = {"users": result.json()}
 	return render_template('users/index.html', **context), 200 
  
@@ -48,7 +52,12 @@ def insert_user():
 			'email': email,
 			'permission': permission
 			}
-		headers = {'Content-Type': 'application/json'}
+
+		headers = {
+			'Content-Type': 'application/json',
+			'Authorization': 'JWT {token}'.format(token=session.get('user_token'))
+		}
+
 		response = requests.post("http://localhost:3000/users", data=json.dumps(payload), headers=headers)
 		if response.status_code == 200:
 			return redirect(url_for('users.list_users'))
@@ -59,10 +68,16 @@ def insert_user():
 
 @bp_users.route('/update/<int:id>', methods=['GET'])
 def update_form(id):
+	# import ipdb; ipdb.set_trace()
 	if 'user_token' not in session:
 		return redirect(url_for('auth.login'))
 	
-	result = requests.get("http://localhost:3000/user/{id}".format(id=id))
+	headers = {
+		'Content-Type': 'application/json',
+		'Authorization': 'JWT {token}'.format(token=session.get('user_token'))
+	}
+	
+	result = requests.get("http://localhost:3000/user/", headers=headers)
 	context = {"user": result.json()}
 	print context
 	return render_template('users/form.html', **context), 200 
@@ -90,13 +105,16 @@ def update_user(id):
 		if password:
 			payload['password'] = password
 
-		headers = {'Content-Type': 'application/json'}
-		response = requests.put("http://localhost:3000/user/{id}".format(id=id), data=json.dumps(payload), headers=headers)
+		headers = {
+			'Content-Type': 'application/json',
+			'Authorization': 'JWT {token}'.format(token=session.get('user_token'))
+		}
+
+		response = requests.put("http://localhost:3000/user/", data=json.dumps(payload), headers=headers)
 		if response.status_code == 204:
 			return redirect(url_for('users.list_users'))
 	else:
 		context = {"user": {"name": name, "email": email, "password": password, "permission": permission}, "errors": errors}
-		print context
 		return render_template('users/form.html', **context), 200
 
 
@@ -105,8 +123,12 @@ def delete_user(id):
 	if 'user_token' not in session:
 		return redirect(url_for('auth.login'))
 	
-	headers = {'Content-Type': 'application/json'}
-	response = requests.delete("http://localhost:3000/user/{id}".format(id=id))
+	headers = {
+		'Content-Type': 'application/json',
+		'Authorization': 'JWT {token}'.format(token=session.get('user_token'))
+	}
+
+	response = requests.delete("http://localhost:3000/user/", headers=headers)
 	if response.status_code == 204:
 		return redirect(url_for('users.list_users'))
 		
