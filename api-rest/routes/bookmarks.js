@@ -41,7 +41,8 @@ module.exports = app => {
 	app.route("/bookmark/:id")
 		.all(app.auth.authenticate())
 		.get((req, res) => {
-			Bookmarks.findOne({where: req.params.id, user_id: req.user.id})
+			console.log(req.params.id)
+			Bookmarks.findOne({where: {id: req.params.id, UserId: req.user.id}})
 			.then(result => {
 				if(result){
 					res.json(result);
@@ -55,7 +56,7 @@ module.exports = app => {
 
 		})
 		.put((req, res) => {
-			Bookmarks.update(req.body, {where: req.params.id, user_id: req.user.id})
+			Bookmarks.update(req.body, {where: {id: req.params.id, UserId: req.user.id}})
 			.then(result => res.sendStatus(204))
 			.catch(error => {
 				res.status(400).json({msg: error.message})
@@ -63,7 +64,7 @@ module.exports = app => {
 
 		})
 		.delete((req, res) => {
-			Bookmarks.destroy({where: req.params.id, user_id: req.user.id})
+			Bookmarks.destroy({where: {id: req.params.id, UserId: req.user.id}})
 			.then(result => res.sendStatus(204))
 			.catch(error =>{
 				res.status(400).json({msg: error.message})

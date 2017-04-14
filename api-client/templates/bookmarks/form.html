@@ -4,14 +4,14 @@
     <div class="page-header">
         <h1>Inserir Bookmark</h1>
     </div>
-    <form>
+    <form method="post">
         <div class="form-group">
             <label for="input_name">Nome</label>
-            <input type="text" class="form-control" name="nome" id="input_name" placeholder="Nome">
+            <input type="text" class="form-control" name="nome" id="input_name" value="{{bookmark.name}}" placeholder="Nome">
         </div>
         <div class="form-group">
             <label for="imput_url">URL</label>
-            <input type="text" class="form-control" name="url" id="imput_url" placeholder="URL">
+            <input type="text" class="form-control" name="url" id="imput_url" value="{{bookmark.url}}" placeholder="URL">
         </div>
         <button type="submit" class="btn btn-primary">Inserir</button>
     </form>
