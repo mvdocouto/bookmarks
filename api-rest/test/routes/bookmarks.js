@@ -21,7 +21,7 @@ describe("Routes: Bookmarks", () => {
             Bookmarks.destroy({where: {}})
             .then(() => Bookmarks.bulkCreate([{
                 id: 1,
-                title: "bookmark 1",
+                title: "Bookmark 1",
                 url: "http://www.bookmark1.com/",
                 user_id: user.id
             }, {
@@ -48,7 +48,19 @@ describe("Routes: Bookmarks", () => {
     });
 
     describe("GET /bookmarks", () => {
-        
+        describe("status 200", () => {
+            it("returns a list of bookmarks", done => {
+                request.get("/bookmarks")
+                    .set("Authorization", `JWT ${token}`)
+                    .expect(200)
+                    .end((err, res) => {
+                        expect(res.body).to.have.length(2);
+                        expect(res.body[0].title).to.eql("Bookmark 1");
+                        expect(res.body[1].title).to.eql("Bookmark 2");
+                        done(err);
+                    });
+            });
+        });        
     });
 
     describe("POST /bookmarks", () => {
