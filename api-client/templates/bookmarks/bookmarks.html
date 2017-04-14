@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Bookmarks{% endblock %}
+{% block content %}
+    <div class="page-header">
+        <h1>Bookmarks</h1>
+    </div>
+    {% for user in all_bookmarks %}
+     <div>
+        <h4>{{ user.name }} - {{ user.email }}</h4>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Título</th>
+                <th>URL</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for bookmark in user.Bookmarks %}
+                <tr>
+                    <td>{{ bookmark.name }}</td>
+                    <td>{{ bookmark.url }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+     </div>
+    {% endfor %}
+{% endblock %}
