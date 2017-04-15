@@ -41,7 +41,7 @@ npm test
 Rodando o projeto em um container Docker:
 ```shell
 docker build -t api-rest .
-docker run -p 5000:5000 -d bookmarks-apit
+docker run -p 5000:5000 -d api-rest
 ```
 O projeto estará disponível através de http://localhost:3000/
 
