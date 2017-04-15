@@ -49,9 +49,18 @@ O projeto estará disponível através de http://localhost:3000/
 
 ### Instalação
 
-Para instalar o projeto basta clonar o repositorio acessar o diretorio **api-client** e instalar as dependencias python com o pip. É aconselhavel utilizar um vitualenv para isolar os pacotes
+Para instalar o projeto basta clonar o repositorio acessar o diretorio **api-client** e instalar as dependencias python com o pip. É aconselhavel utilizar um virtualenv para isolar os pacotes
 ```
 pip install -r requirements.txt
 python run.py
+```
+
+O projeto esta configurando para acessar uma API REST rodando no endereço http://localhost:3000/
+
+### Docker
+Rodando o projeto em um container Docker:
+```shell
+docker build -t api-client .
+docker run -p 5000:5000 -d api-client
 ```
 O projeto estará disponível através de http://localhost:5000/
