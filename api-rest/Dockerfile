@@ -6,7 +6,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /user/src/app
 
 # Instalando as dependencias
-COPY package.json
+COPY package.json /usr/src/app/
 RUN npm install
 RUN npm install -g babel-cli
 
