@@ -9,11 +9,14 @@ import requests
 bp_users = Blueprint('users', __name__,
                         template_folder='templates')
 
-@bp_users.route('/',methods=['GET'])
-def list_users():
+def autenticate():
 	if 'user_token' not in session:
 		return redirect(url_for('auth.login'))
-	
+
+@bp_users.route('/',methods=['GET'])
+def list_users():
+	autenticate()
+
 	headers = {
 		'Content-Type': 'application/json',
 		'Authorization': 'JWT {token}'.format(token=session.get('user_token'))
@@ -25,9 +28,8 @@ def list_users():
 
 @bp_users.route('/all',methods=['GET'])
 def list_all_users():
-	if 'user_token' not in session:
-		return redirect(url_for('auth.login'))
-	
+	autenticate()
+
 	headers = {
 		'Content-Type': 'application/json',
 		'Authorization': 'JWT {token}'.format(token=session.get('user_token'))
@@ -40,9 +42,8 @@ def list_all_users():
 
 @bp_users.route('/add', methods=['GET'])
 def insert_form():
-	if 'user_token' not in session:
-		return redirect(url_for('auth.login'))
-	
+	autenticate()
+
 	context = {"user":[], "permission": session.get("permission")}
 	return render_template('users/form.html', **context), 200 
  
@@ -87,10 +88,8 @@ def insert_user():
 
 @bp_users.route('/update/<int:id>', methods=['GET'])
 def update_form(id):
-	# import ipdb; ipdb.set_trace()
-	if 'user_token' not in session:
-		return redirect(url_for('auth.login'))
-	
+	autenticate()
+
 	headers = {
 		'Content-Type': 'application/json',
 		'Authorization': 'JWT {token}'.format(token=session.get('user_token'))
@@ -139,8 +138,7 @@ def update_user(id):
 
 @bp_users.route('/delete/<int:id>', methods=['GET'])
 def delete_user(id):
-	if 'user_token' not in session:
-		return redirect(url_for('auth.login'))
+	autenticate()
 	
 	headers = {
 		'Content-Type': 'application/json',

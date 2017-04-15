@@ -9,11 +9,14 @@ import requests
 bp_bookmarks = Blueprint('bookmarks', __name__,
                         template_folder='templates')
 
-@bp_bookmarks.route('/',methods=['GET'])
-def list_bookmarks():
+def autenticate():
 	if 'user_token' not in session:
 		return redirect(url_for('auth.login'))
 	
+@bp_bookmarks.route('/',methods=['GET'])
+def list_bookmarks():
+	autenticate()
+
 	headers = {
 		'Content-Type': 'application/json',
 		'Authorization': 'JWT {token}'.format(token=session.get('user_token'))
@@ -25,8 +28,7 @@ def list_bookmarks():
 
 @bp_bookmarks.route('/all',methods=['GET'])
 def all_bookmarks():
-	if 'user_token' not in session:
-		return redirect(url_for('auth.login'))
+	autenticate()
 
 	headers = {
 		'Content-Type': 'application/json',
@@ -42,8 +44,7 @@ def all_bookmarks():
 
 @bp_bookmarks.route('/add', methods=['GET'])
 def insert_form():
-	if 'user_token' not in session:
-		return redirect(url_for('auth.login'))
+	autenticate()
 
 	context = {"bookmark":[], "permission": session.get("permission")}
 	return render_template('bookmarks/form.html', **context), 200 
@@ -79,10 +80,8 @@ def insert_bookmark():
 
 @bp_bookmarks.route('/update/<int:id>', methods=['GET'])
 def update_form(id):
-	import ipdb; ipdb.set_trace()
-	if 'user_token' not in session:
-		return redirect(url_for('auth.login'))
-	
+	autenticate()
+
 	headers = {
 		'Content-Type': 'application/json',
 		'Authorization': 'JWT {token}'.format(token=session.get('user_token'))
@@ -123,9 +122,8 @@ def update_bookmark(id):
 
 @bp_bookmarks.route('/delete/<int:id>', methods=['GET'])
 def delete_bookmark(id):
-	if 'user_token' not in session:
-		return redirect(url_for('auth.login'))
-	
+	autenticate()
+
 	headers = {
 		'Content-Type': 'application/json',
 		'Authorization': 'JWT {token}'.format(token=session.get('user_token'))
