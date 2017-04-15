@@ -16,7 +16,7 @@ O sistema foi dividido em dois módulos:
 
 ### Instalação
 
-Para instalar o projeto basta clonar o repositorio acessar o diretorio **api-rest** e intalar as dependencias do node com o npm.
+Para instalar o projeto basta clonar o repositorio acessar o diretorio **api-rest** e instalar as dependencias do node com o npm.
 ```shell
 npm install
 npm start
@@ -38,6 +38,18 @@ npm test
 ```
 
 ### Docker
+Rodando o projeto em um container Docker:
+```shell
+npm test
+```
+O projeto estará disponível através de http://localhost:5000/
 
+## API Client
 
-## API Client 
+### Instalação
+
+Para instalar o projeto basta clonar o repositorio acessar o diretorio **api-client** e instalar as dependencias python com o pip. É aconselhavel utilizar um vitualenv para isolar os pacotes
+```
+pip install -r requirements.txt
+python run.py
+```
