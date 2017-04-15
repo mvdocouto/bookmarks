@@ -43,7 +43,7 @@ Rodando o projeto em um container Docker:
 docker build -t api-rest .
 docker run -p 5000:5000 -d bookmarks-apit
 ```
-O projeto estará disponível através de http://localhost:5000/
+O projeto estará disponível através de http://localhost:3000/
 
 ## API Client
 
@@ -54,3 +54,4 @@ Para instalar o projeto basta clonar o repositorio acessar o diretorio **api-cli
 pip install -r requirements.txt
 python run.py
 ```
+O projeto estará disponível através de http://localhost:5000/
