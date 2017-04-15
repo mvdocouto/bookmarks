@@ -19,7 +19,7 @@ def list_bookmarks():
 		'Authorization': 'JWT {token}'.format(token=session.get('user_token'))
 	}
 	result = requests.get("http://localhost:3000/bookmarks", headers=headers)
-	context = {"bookmarks": result.json()}
+	context = {"bookmarks": result.json(), "permission": session.get("permission")}
 	return render_template('bookmarks/index.html', **context), 200 
  
 
@@ -34,7 +34,7 @@ def all_bookmarks():
 	}
 	result = requests.get("http://localhost:3000/bookmarks/all", headers=headers)
 	if result.status_code == 200:
-		context = {"all_bookmarks": result.json()}
+		context = {"all_bookmarks": result.json(), "permission": session.get("permission")}
 		return render_template('bookmarks/bookmarks.html', **context), 200
 	else:
 		return redirect(url_for('bookmarks.list_bookmarks'))
@@ -45,7 +45,7 @@ def insert_form():
 	if 'user_token' not in session:
 		return redirect(url_for('auth.login'))
 
-	context = {"bookmark":[]}
+	context = {"bookmark":[], "permission": session.get("permission")}
 	return render_template('bookmarks/form.html', **context), 200 
  
 
@@ -72,7 +72,8 @@ def insert_bookmark():
 		if response.status_code == 201:
 			return redirect(url_for('bookmarks.list_bookmarks'))
 	else:
-		context = {"bookmark": {"name": name, "url": url}, "errors": errors}
+		context = {"bookmark": {"name": name, "url": url}, "errors": errors, 
+			"permission": session.get("permission")}
 		return render_template('bookmarks/form.html', **context), 200 
 
 
@@ -87,8 +88,7 @@ def update_form(id):
 		'Authorization': 'JWT {token}'.format(token=session.get('user_token'))
 	}
 	result = requests.get("http://localhost:3000/bookmark/{id}".format(id=id), headers=headers)
-	context = {"bookmark": result.json()}
-	print context
+	context = {"bookmark": result.json(), "permission": session.get("permission")}
 	return render_template('bookmarks/form.html', **context), 200 
  
 
@@ -116,7 +116,8 @@ def update_bookmark(id):
 		if response.status_code == 204:
 			return redirect(url_for('bookmarks.list_bookmarks'))
 	else:
-		context = {"bookmark": {"name": name, "url": url}, "errors": errors}
+		context = {"bookmark": {"name": name, "url": url}, "errors": errors, 
+			"permission": session.get("permission")}
 		return render_template('bookmarks/form.html', **context), 200 
 
 

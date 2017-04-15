@@ -12,7 +12,8 @@ module.exports = app => {
 				if(Users.isPasswordCorrect(user.password, password)){
 					const payload = {id: user.id};
 					res.json({
-						token: jwt.encode(payload, config.jwtSecret)
+						token: jwt.encode(payload, config.jwtSecret),
+						permission: user.permission
 					});
 				}else{
 					res.senStatus(400).json({msg: error.message});

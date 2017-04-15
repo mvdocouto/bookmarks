@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Meus Bookmarks - Usuários{% endblock %}
+{% block title %}Meus Bookmarks - Todos os Usuários{% endblock %}
 {% block content %}
   <div class="page-header">
       <h1>Users</h1>
@@ -11,19 +11,18 @@
       <thead>
         <tr>
           <th>Nome</th>
+          <th>Email</th>
           <th>Permission</th>
-          <th>Opções</th>
         </tr>
       </thead>
       <tbody>
+          {% for user in users %}
           <tr>
-            <td>{{users.name}}</td>
-            <td>{{users.permission }}</td>
-            <td>
-                <a href="./update/{{users.id}}" class="btn btn-xs btn-primary">Alterar</a>
-                <a href= "./delete/{{users.id}}" class="btn btn-xs btn-danger">Excluir</a>
-            </td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.permission }}</td>
           </tr>
+          {% endfor %}
       </tbody>
   </table>
 {% endblock %}

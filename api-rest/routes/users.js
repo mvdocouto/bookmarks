@@ -38,7 +38,7 @@ module.exports = app => {
         .get((req, res) => {
             Users.findById(req.user.id)
             .then(user => {
-                if(user.isAdmin){
+                if(user.permission){
                     Users.findAll({
                         attributes: ["id", "name", "email", "permission"]
                     })
