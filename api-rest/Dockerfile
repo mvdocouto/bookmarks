@@ -1,5 +1,5 @@
 # Usando a ultima imagem do node
-FROM node:lasted
+FROM node:latest
 
 # Creiando o diretorio do APP
 RUN mkdir -p /usr/src/app
