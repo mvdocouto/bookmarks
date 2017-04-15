@@ -26,8 +26,3 @@ def rotas(error):
         reposta = {'erro': 'url not found', 'status code': 404}
     return jsonify(reposta), 404
 
-
-@app.errorhandler(500)
-def erro_500(error=None):
-    u"""Handler para erro 500."""
-    return jsonify({'erro': "Internal Server Error", 'status code': 500}), 500
